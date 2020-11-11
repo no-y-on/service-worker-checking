@@ -49,6 +49,7 @@ const ProductCard = ({ product }) => {
 
     const price = new FormData(event.target).get('priceSelect')
     const stripe = await getStripe()
+    
     const { error } = await stripe.redirectToCheckout({
       mode: 'payment',
       lineItems: [{ price, quantity: 1 }],
@@ -61,15 +62,11 @@ const ProductCard = ({ product }) => {
       setLoading(false)
     }
   }
-  console.log(product);
 
   return (
     <div style={cardStyles}>
       <form onSubmit={handleSubmit}>
         <fieldset style={{ border: 'none' }}>
-          <label>
-
-          </label>
           <legend>
             <h4>{product.name}</h4>
           </legend>
