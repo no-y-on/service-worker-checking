@@ -1,13 +1,6 @@
 # Settings in the [build] context are global and are applied to all contexts 
 # unless otherwise overridden by more specific contexts.  
 [build]
-
-  publish = "public/"
-
-  # Default build command.
   command = "gatsby build"
-
-[template.environment]
-  GATSBY_STRIPE_PUBLISHABLE_KEY = 'pk_test_51HmFCPEB29tb8AM07W3DCzvKH3b3UmB4oMOIBGtoyux7Ln1Zdi7jR5h5Fm9WhN3pRzjPggbnOUuILmTvwQzO3eAu00EtKMyztc'
-  GATSBY_BUTTON_PRICE_ID = 'price_1HmFJAEB29tb8AM0E33LOmgL'
-  STRIPE_SECRET_KEY = 'sk_test_51HmFCPEB29tb8AM0d1v8XrhBzUAhISokxQRO9bwrcwHwF12QkjHD120SBMatGL2DI1zPZVdiRW7rVQsX4jzh0tKC00hq5wymD4'
+  publish = "public"
+  functions = "lambda"
