@@ -41,6 +41,41 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
-    'gatsby-plugin-offline',
+    // Overriding the workbox config with gatsby offline plugin to change the runtime caching policies to use NetworkFirst appropriately
+      {
+          resolve: `gatsby-plugin-offline`,
+          options: {
+              workboxConfig: {
+                  runtimeCaching: [
+                      {
+                          urlPattern: /(\.js$|\.css$|static\/)/,
+                          handler: `CacheFirst`,
+                      },
+                      {
+                          urlPattern: /^https?:.*\/page-data\/.*\/(page-data|app-data)\.json$/,
+                          handler: `NetworkFirst`,
+                          options: {
+                              networkTimeoutSeconds: 1,
+                          },
+                      },
+                      {
+                          urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+                          handler: `StaleWhileRevalidate`,
+                      },
+                      {
+                          urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+                          handler: `StaleWhileRevalidate`,
+                      },
+                      {
+                          urlPattern: /\/$/,
+                          handler: `NetworkFirst`,
+                          options: {
+                              networkTimeoutSeconds: 1,
+                          },
+                      },
+                  ],
+              },
+          },
+      },
   ],
 }
